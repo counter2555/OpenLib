@@ -30,10 +30,10 @@
         {
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.birthday = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,12 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.DoubleClick += new System.EventHandler(this.ListView1_DoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            this.Id.Width = 134;
             // 
             // firstName
             // 
@@ -85,11 +91,6 @@
             // 
             this.birthday.Text = "Birthday";
             this.birthday.Width = 264;
-            // 
-            // Id
-            // 
-            this.Id.Text = "Id";
-            this.Id.Width = 134;
             // 
             // ListUsers
             // 

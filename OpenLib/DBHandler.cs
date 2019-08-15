@@ -24,17 +24,16 @@ namespace OpenLib
             this.conn.Close();
         }
 
-        public bool InsertUser(string firstName,
-            string lastName, DateTime birthday)
+        public bool InsertUser(User u)
         {
             string query = "INSERT INTO dbo.Users (FirstName, LastName, Birthday) "
                 + "VALUES (@fn, @ln, @bd)";
 
             using (SqlCommand cmd = new SqlCommand(query, this.conn))
             {
-                cmd.Parameters.AddWithValue("@fn", firstName);
-                cmd.Parameters.AddWithValue("@ln", lastName);
-                cmd.Parameters.AddWithValue("@bd", birthday);
+                cmd.Parameters.AddWithValue("@fn", u.FirstName);
+                cmd.Parameters.AddWithValue("@ln", u.LastName);
+                cmd.Parameters.AddWithValue("@bd", u.Birthday);
 
                 int result = cmd.ExecuteNonQuery();
 
@@ -69,6 +68,29 @@ namespace OpenLib
 
 
             return users;
+        }
+
+        public bool UpdateUser(User u)
+        {
+            string query = "UPDATE dbo.Users SET "+
+                "FirstName=@fname, LastName=@lname, Birthday=@bday "
+                +"WHERE Id=@Id";
+
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@fname", u.FirstName);
+                cmd.Parameters.AddWithValue("@lname", u.LastName);
+                cmd.Parameters.AddWithValue("@bday", u.Birthday);
+                cmd.Parameters.AddWithValue("@Id", u.Id);
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+
         }
     }
 }
