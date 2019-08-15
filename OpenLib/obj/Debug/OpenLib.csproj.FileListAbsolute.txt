@@ -1,0 +1,14 @@
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\bin\Debug\OpenLib.exe.config
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\bin\Debug\OpenLib.exe
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\bin\Debug\OpenLib.pdb
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssemblyReference.cache
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.Form1.resources
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.Properties.Resources.resources
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.csproj.GenerateResource.cache
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.csproj.CoreCompileInputs.cache
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.exe
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.pdb
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.AddUser.resources
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\bin\Debug\OpenLibDB.mdf
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\bin\Debug\OpenLibDB_log.ldf
+C:\Users\Benedikt\source\repos\OpenLib\OpenLib\obj\Debug\OpenLib.ListUsers.resources
