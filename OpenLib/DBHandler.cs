@@ -11,6 +11,13 @@ namespace OpenLib
     {
         private string connString;
         private SqlConnection conn;
+
+        public struct SQLParameter
+        {
+            public string name;
+            public object value;
+        }
+
         public DBHandler(string conn_string)
         {
             this.connString = conn_string;
@@ -44,30 +51,43 @@ namespace OpenLib
             }
         }
 
+        public List<User> UserQuery(string query, SQLParameter[] parameters)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+
+                foreach (SQLParameter p in parameters)
+                {
+                    cmd.Parameters.AddWithValue(p.name, p.value);
+                }
+
+                List<User> users = new List<User>();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                            string fname = reader.GetString(reader.GetOrdinal("FirstName"));
+                            string lname = reader.GetString(reader.GetOrdinal("LastName"));
+                            DateTime bday = reader.GetDateTime(reader.GetOrdinal("Birthday"));
+
+                            User u = new User(id, fname, lname, bday);
+                            users.Add(u);
+                        }
+                    }
+                }
+
+
+                return users;
+            }
+        }
+
         public List<User> GetAllUsers()
         {
             string query = "SELECT * FROM dbo.Users ORDER BY LastName";
-            SqlCommand cmd = new SqlCommand(query, this.conn);
-            List<User> users = new List<User>();
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                if(reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int id = reader.GetInt32(reader.GetOrdinal("Id"));
-                        string fname = reader.GetString(reader.GetOrdinal("FirstName"));
-                        string lname = reader.GetString(reader.GetOrdinal("LastName"));
-                        DateTime bday = reader.GetDateTime(reader.GetOrdinal("Birthday"));
-
-                        User u = new User(id, fname, lname, bday);
-                        users.Add(u);
-                    }
-                }
-            }
-
-
-            return users;
+            return this.UserQuery(query, new SQLParameter[] { });
         }
 
         public bool UpdateUser(User u)
@@ -90,6 +110,21 @@ namespace OpenLib
                 else
                     return true;
             }
+
+        }
+
+        public List<User> SearchUserByName(string name)
+        {
+            string query = "SELECT * FROM dbo.Users "+
+                "WHERE LOWER(LastName) LIKE LOWER(@ss) "
+                +"OR LOWER(FirstName) LIKE LOWER(@ss) "
+                +"ORDER BY LastName";
+            
+            SQLParameter ss = new SQLParameter();
+            ss.name = "@ss";
+            ss.value = "%"+name+"%";
+
+            return this.UserQuery(query, new SQLParameter[] { ss });
 
         }
     }

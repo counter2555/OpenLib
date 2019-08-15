@@ -33,5 +33,14 @@ namespace OpenLib.Properties {
                 return ((string)(this["OpenLibDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PerMonitorVPerMonitorV2")]
+        public string DpiAwareness {
+            get {
+                return ((string)(this["DpiAwareness"]));
+            }
+        }
     }
 }
