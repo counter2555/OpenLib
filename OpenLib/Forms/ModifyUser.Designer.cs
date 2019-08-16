@@ -30,10 +30,15 @@
         {
             this.SuspendLayout();
             // 
+            // remarks
+            // 
+            this.remarks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.remarks.Size = new System.Drawing.Size(391, 137);
+            // 
             // ModifyUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
-            this.ClientSize = new System.Drawing.Size(785, 220);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.ClientSize = new System.Drawing.Size(589, 297);
             this.Name = "ModifyUser";
             this.Text = "Modify User";
             this.Load += new System.EventHandler(this.ModifyUser_Load);

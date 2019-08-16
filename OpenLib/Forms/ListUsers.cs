@@ -32,7 +32,8 @@ namespace OpenLib
             {
                 string[] items = {u.Id.ToString(),
                 u.FirstName, u.LastName,
-                u.Birthday.ToString().Split(' ')[0]};
+                u.Birthday.ToString().Split(' ')[0],
+                u.Remarks};
 
                 ListViewItem itm = new ListViewItem(items);
                 this.listView1.Items.Add(itm);
@@ -55,19 +56,67 @@ namespace OpenLib
                 dlg.firstName.Text = u.FirstName;
                 dlg.lastName.Text = u.LastName;
                 dlg.birthday.Value = u.Birthday;
+                dlg.remarks.Text = u.Remarks;
 
                 if(dlg.ShowDialog() == DialogResult.OK)
                 {
                     User u2 = new User(u.Id,
                         dlg.firstName.Text,
                         dlg.lastName.Text,
-                        dlg.birthday.Value);
+                        dlg.birthday.Value,
+                        dlg.remarks.Text);
 
                     db_handler.UpdateUser(u2);
 
                     this.listView1.Items.Clear();
                     PopulateListView();
                 }
+            }
+        }
+
+        public void DeleteSelectedUsers()
+        {
+            if (this.listView1.SelectedItems.Count > 0)
+            {
+                int count = this.listView1.SelectedItems.Count;
+                if (MessageBox.Show("Are you sure to delete "+count.ToString()
+                    +" users?\nThis cannot be undone afterwards.", "Deleting Users", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    uint succ_count = 0;
+                    foreach(ListViewItem lvi in this.listView1.SelectedItems)
+                    {
+                        User u = User.FromListView(lvi);
+                        if (db_handler.DeleteUser(u))
+                            succ_count++;
+                    }
+
+                    PopulateListView();
+
+                    MessageBox.Show(succ_count.ToString()+" of "+count.ToString()+" users deleted successfully.",
+                        "Deleting Users", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    
+
+                }
+            }
+        }
+
+        public void AddUser()
+        {
+            AddUser dlg = new AddUser();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                User u = new User(-1, dlg.firstName.Text,
+                    dlg.lastName.Text,
+                    dlg.birthday.Value, dlg.remarks.Text);
+
+                bool done = db_handler.InsertUser(u);
+
+                if (done)
+                    PopulateListView();
+                else
+                    MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,6 +135,41 @@ namespace OpenLib
                 
                 PopulateListView(users);
             }
+        }
+
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditUser();
+        }
+
+        private void DeleteUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.DeleteSelectedUsers();
+        }
+
+        private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddUser();
+        }
+
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            AddUser();
+        }
+
+        private void ToolStripButton3_Click(object sender, EventArgs e)
+        {
+            PopulateListView();
+        }
+
+        private void ToolStripButton4_Click(object sender, EventArgs e)
+        {
+            EditUser();
         }
     }
 }

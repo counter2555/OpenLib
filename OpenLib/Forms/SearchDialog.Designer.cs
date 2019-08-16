@@ -34,16 +34,18 @@
             // 
             // searchText
             // 
-            this.searchText.Location = new System.Drawing.Point(22, 12);
+            this.searchText.Location = new System.Drawing.Point(16, 10);
+            this.searchText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.searchText.Name = "searchText";
-            this.searchText.Size = new System.Drawing.Size(580, 38);
+            this.searchText.Size = new System.Drawing.Size(436, 31);
             this.searchText.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(608, 12);
+            this.button1.Location = new System.Drawing.Point(456, 7);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 46);
+            this.button1.Size = new System.Drawing.Size(131, 37);
             this.button1.TabIndex = 1;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = true;
@@ -52,12 +54,13 @@
             // SearchDialog
             // 
             this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 65);
+            this.ClientSize = new System.Drawing.Size(596, 52);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.searchText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SearchDialog";

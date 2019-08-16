@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +64,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="CryptoHelper.cs" />
+    <Compile Include="Forms\AddBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddBook.Designer.cs">
+      <DependentUpon>AddBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,11 +86,35 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CreateAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateAdmin.Designer.cs">
+      <DependentUpon>CreateAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAdmin.Designer.cs">
+      <DependentUpon>EditAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListAdmins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListAdmins.Designer.cs">
+      <DependentUpon>ListAdmins.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ListUsers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ListUsers.Designer.cs">
       <DependentUpon>ListUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ModifyUser.cs">
       <SubType>Form</SubType>
@@ -92,6 +128,7 @@
     <Compile Include="Forms\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ISBNApi.cs" />
     <Compile Include="OpenLibDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,14 +137,29 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="Forms\AddBook.resx">
+      <DependentUpon>AddBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateAdmin.resx">
+      <DependentUpon>CreateAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditAdmin.resx">
+      <DependentUpon>EditAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListAdmins.resx">
+      <DependentUpon>ListAdmins.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListUsers.resx">
       <DependentUpon>ListUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyUser.resx">
       <DependentUpon>ModifyUser.cs</DependentUpon>
@@ -135,6 +187,7 @@
     <None Include="OpenLibDBDataSet.xss">
       <DependentUpon>OpenLibDBDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,6 +202,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\96px-Gnome-edit-find.svg.png" />
     <Content Include="OpenLibDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -156,6 +210,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>OpenLibDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Other\Icons.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
