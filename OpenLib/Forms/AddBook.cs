@@ -26,7 +26,7 @@ namespace OpenLib.Forms
 
         private void TextBox3_TextChanged(object sender, EventArgs e)
         {
-
+            this.isbn.BackColor = Color.White;
         }
 
         private void TextBox4_TextChanged(object sender, EventArgs e)
@@ -34,9 +34,15 @@ namespace OpenLib.Forms
 
         }
 
+        public string CleanISBN(string isbn)
+        {
+            isbn = isbn.ToLower().Replace("isbn", "").Replace(" ", "").Replace("-", "").Trim();
+            return isbn;
+        }
+
         private void Button3_Click(object sender, EventArgs e)
         {
-            string isbn = this.isbn.Text.Replace("-", "").Trim();
+            string isbn = CleanISBN(this.isbn.Text);
             Book b = isbn_api.GetBookByISBN(isbn);
             if (b != null)
             {
@@ -54,6 +60,16 @@ namespace OpenLib.Forms
         private void Button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void AddBook_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Isbn_Leave(object sender, EventArgs e)
+        {
+            this.isbn.Text = CleanISBN(this.isbn.Text);
         }
     }
 }

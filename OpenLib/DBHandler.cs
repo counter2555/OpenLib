@@ -279,6 +279,244 @@ namespace OpenLib
             }
             return successful;
         }
+
+
+        public List<Book> BookQuery(string query, SQLParameter[] parameters)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+
+                foreach (SQLParameter p in parameters)
+                {
+                    cmd.Parameters.AddWithValue(p.name, p.value);
+                }
+
+                List<Book> books = new List<Book>();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                            string title = reader.SafeGetString(reader.GetOrdinal("Title"));
+                            string authors = reader.SafeGetString(reader.GetOrdinal("Author"));
+                            string isbn = reader.SafeGetString(reader.GetOrdinal("ISBN"));
+                            int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            string desc = reader.SafeGetString(reader.GetOrdinal("Description"));
+                            string rem = reader.SafeGetString(reader.GetOrdinal("Remarks"));
+
+                            Book b = new Book(id, title, authors, isbn, desc, rem, quantity);
+                            books.Add(b);
+                        }
+                    }
+                }
+
+
+                return books;
+            }
+        }
+
+        public Book QueryBookByISBN(string isbn)
+        {
+            string query = "SELECT * FROM dbo.Books WHERE ISBN = @isbn";
+
+            SQLParameter pm = new SQLParameter();
+            pm.name = "@isbn";
+            pm.value = isbn;
+
+            List<Book> books = this.BookQuery(query, new SQLParameter[] { pm });
+            if (books.Count > 0)
+                return books[0];
+            else
+                return null;
+
+        }
+
+        //inserts new entry for book in DB
+        public bool InsertBook(Book b)
+        {
+            string query = "INSERT INTO dbo.Books (ISBN, Title, Author, Quantity, Description, Remarks) "
+                        + "VALUES (@isbn, @title, @auth, @quant, @desc, @rem)";
+
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@isbn", b.ISBN);
+                cmd.Parameters.AddWithValue("@title", b.Title);
+                cmd.Parameters.AddWithValue("@auth", b.Author);
+                cmd.Parameters.AddWithValue("@quant", b.Quantity);
+                cmd.Parameters.AddWithValue("@desc", b.Description);
+                cmd.Parameters.AddWithValue("@rem", b.Remarks);
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        //checks if book exists and creates or adds to entry in DB
+        public bool AddBook(Book b)
+        {
+            Book query = this.QueryBookByISBN(b.ISBN);
+            if (query != null)
+            {
+                query.Quantity += b.Quantity;
+                return this.UpdateBook(query);
+            }
+            else
+                return this.InsertBook(b);
+        }
+
+        public bool UpdateBook(Book b)
+        {
+            string query = "UPDATE dbo.Books SET " +
+             "ISBN=@isbn, Title=@title, Author=@auth, Quantity=@quant, Description=@desc, Remarks=@rem "
+             +"WHERE Id = @id";
+
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@isbn", b.ISBN);
+                cmd.Parameters.AddWithValue("@title", b.Title);
+                cmd.Parameters.AddWithValue("@auth", b.Author);
+                cmd.Parameters.AddWithValue("@quant", b.Quantity);
+                cmd.Parameters.AddWithValue("@desc", b.Description);
+                cmd.Parameters.AddWithValue("@rem", b.Remarks);
+
+                cmd.Parameters.AddWithValue("@id", b.Id);
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public List<Book> GetAllBooks()
+        {
+            string query = "SELECT * FROM dbo.Books ORDER BY Title";
+            return this.BookQuery(query, new SQLParameter[] { });
+
+        }
+
+        public List<Book> GetAllBooksAndRemain()
+        {
+            string query = "SELECT * FROM dbo.Books ORDER BY Title";
+            return this.BookQuery(query, new SQLParameter[] { });
+
+        }
+
+        public bool DeleteBook(Book b)
+        {
+            string query = "DELETE FROM dbo.Books WHERE Id = @Id";
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@Id", b.Id);
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+        public bool DeleteBooks(List<Book> books)
+        {
+            bool successful = true;
+
+            foreach(Book b in books)
+            {
+                if (!this.DeleteBook(b))
+                    successful = false;
+            }
+            return successful;
+        }
+
+        public List<Book> SearchBooks(string title, string author, string isbn,
+            int lowerQ, int upperQ, string desc, string remarks,
+            bool bTitle, bool bAuthor, bool bISBN, bool bQuant, bool bDesc, bool bRem)
+        {
+            string query = "SELECT * FROM dbo.Books WHERE";
+
+            List<string> query_parts = new List<string>();
+
+            if(bTitle)
+                query_parts.Add("LOWER(Title) LIKE LOWER(@title)");
+            
+            if (bAuthor)
+                query_parts.Add("LOWER(Author) LIKE LOWER(@auth)");
+
+            if (bISBN)
+                query_parts.Add("LOWER(ISBN) LIKE LOWER(@isbn)");
+
+            if (bQuant)
+                query_parts.Add("Quantity BETWEEN @lq AND @uq");
+
+            if (bDesc)
+                query_parts.Add("LOWER(Description) LIKE LOWER(@desc)");
+
+            if (bRem)
+                query_parts.Add("LOWER(Remarks) LIKE LOWER(@rem)");
+
+
+
+            if (query_parts.Count > 0)
+            {
+                for(int i = 0; i<query_parts.Count; i++)
+                {
+                    if (i != 0)
+                        query += " AND";
+
+                    query += " " + query_parts[i];
+                }
+
+                SQLParameter pisbn = new SQLParameter();
+                pisbn.name = "@isbn";
+                pisbn.value = "%"+isbn+"%";
+
+                SQLParameter ptitle = new SQLParameter();
+                ptitle.name = "@title";
+                ptitle.value = "%" + title + "%";
+
+                SQLParameter pauth = new SQLParameter();
+                pauth.name = "@auth";
+                pauth.value = "%" + author + "%";
+
+                SQLParameter plq = new SQLParameter();
+                plq.name = "@lq";
+                plq.value = lowerQ;
+
+                SQLParameter puq = new SQLParameter();
+                puq.name = "@uq";
+                puq.value = upperQ;
+
+                SQLParameter pdesc = new SQLParameter();
+                pdesc.name = "@desc";
+                pdesc.value = "%" + desc + "%";
+
+
+                SQLParameter prem = new SQLParameter();
+                prem.name = "@rem";
+                prem.value = "%" + remarks + "%";
+
+                SQLParameter[] pars =
+                {
+                    pisbn, ptitle, pauth, plq, puq,
+                    pdesc, prem
+                };
+
+                return this.BookQuery(query, pars);
+
+            
+            }
+            else
+                return null;
+        }
     }
     
 }

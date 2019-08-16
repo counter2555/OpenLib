@@ -98,11 +98,23 @@
     <Compile Include="Forms\EditAdmin.Designer.cs">
       <DependentUpon>EditAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditBook.Designer.cs">
+      <DependentUpon>EditBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ListAdmins.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ListAdmins.Designer.cs">
       <DependentUpon>ListAdmins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListBooks.Designer.cs">
+      <DependentUpon>ListBooks.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ListUsers.cs">
       <SubType>Form</SubType>
@@ -121,6 +133,12 @@
     </Compile>
     <Compile Include="Forms\ModifyUser.Designer.cs">
       <DependentUpon>ModifyUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SearchBook.Designer.cs">
+      <DependentUpon>SearchBook.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SearchDialog.cs">
       <SubType>Form</SubType>
@@ -152,8 +170,14 @@
     <EmbeddedResource Include="Forms\EditAdmin.resx">
       <DependentUpon>EditAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditBook.resx">
+      <DependentUpon>EditBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListAdmins.resx">
       <DependentUpon>ListAdmins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListBooks.resx">
+      <DependentUpon>ListBooks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListUsers.resx">
       <DependentUpon>ListUsers.cs</DependentUpon>
@@ -163,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyUser.resx">
       <DependentUpon>ModifyUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SearchBook.resx">
+      <DependentUpon>SearchBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>

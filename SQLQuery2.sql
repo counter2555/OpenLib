@@ -1,0 +1,1 @@
+﻿SELECT * FROM dbo.Books WHERE LOWER(Title) LIKE LOWER('%harry%');

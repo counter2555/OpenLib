@@ -28,7 +28,6 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.exe
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.pdb
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchDialog.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.CreateAdmin.resources
-C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssemblyReference.cache
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.Login.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListAdmins.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.EditAdmin.resources
@@ -36,3 +35,7 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csproj.CopyComplete
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.AddBook.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssemblyReference.cache
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListBooks.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.EditBook.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchBook.resources

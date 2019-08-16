@@ -29,15 +29,19 @@ namespace OpenLib
                 string title = (string)ob["title"];
                 var authors = ob["authors"];
                 string sauthor = string.Empty;
-                foreach (var a in authors)
+
+                if (authors != null)
                 {
-                    sauthor += (string)a["name"] + ", ";
+                    foreach (var a in authors)
+                    {
+                        sauthor += (string)a["name"] + ", ";
+                    }
                 }
                 sauthor = sauthor.TrimEnd(' ').TrimEnd(',');
 
                 string desc = (string)ob["description"];
 
-                Book b = new Book(title, sauthor, isbn, desc);
+                Book b = new Book(-1, title, sauthor, isbn, desc, string.Empty, 1);
                 return b;
             }
             catch (Exception ex)

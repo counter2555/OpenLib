@@ -104,8 +104,8 @@ namespace OpenLib
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            Forms.AddBook dlg = new Forms.AddBook();
-            dlg.ShowDialog();
+            Forms.ListBooks dlg = new Forms.ListBooks(db_handler);
+            dlg.Show();
         }
     }
 }
