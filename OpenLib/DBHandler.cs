@@ -306,7 +306,19 @@ namespace OpenLib
                             string desc = reader.SafeGetString(reader.GetOrdinal("Description"));
                             string rem = reader.SafeGetString(reader.GetOrdinal("Remarks"));
 
-                            Book b = new Book(id, title, authors, isbn, desc, rem, quantity);
+                            int borrowed = 0;
+                            try
+                            {
+                                int o = reader.GetOrdinal("Leased");
+                                borrowed = reader.GetInt32(o);
+                            }
+                            catch
+                            {
+
+                            }
+
+                            Book b = new Book(id, title, authors, isbn, desc, rem, quantity,
+                                borrowed);
                             books.Add(b);
                         }
                     }
@@ -398,9 +410,19 @@ namespace OpenLib
 
         public List<Book> GetAllBooks()
         {
-            string query = "SELECT * FROM dbo.Books ORDER BY Title";
+            string query = "SELECT *, "
+                + "(SELECT SUM(dbo.Leases.Quantity) FROM dbo.Leases "
+                + "WHERE dbo.Leases.BookId = dbo.Books.Id  AND dbo.Leases.Returned = 0) as Leased "
+                + "FROM dbo.Books ORDER BY Leased DESC, Title";
+
             return this.BookQuery(query, new SQLParameter[] { });
 
+            /*
+             SELECT *,
+	            (SELECT SUM(dbo.Leases.BookId) FROM dbo.Leases
+	            WHERE dbo.Leases.BookId = dbo.Books.Id) as Leased 
+                FROM dbo.Books ORDER BY Leased DESC, Title 
+           */
         }
 
         public List<Book> GetAllBooksAndRemain()
@@ -517,6 +539,150 @@ namespace OpenLib
             else
                 return null;
         }
+
+        public List<Lease> LeaseQuery(string query, SQLParameter[] parameters)
+        {
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+
+                foreach (SQLParameter p in parameters)
+                {
+                    cmd.Parameters.AddWithValue(p.name, p.value);
+                }
+
+                List<Lease> leases = new List<Lease>();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+                            int bookid = reader.GetInt32(reader.GetOrdinal("BookId"));
+                            int quant = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            int userid = reader.GetInt32(reader.GetOrdinal("UserId"));
+                            DateTime from = reader.GetDateTime(reader.GetOrdinal("LeaseDate"));
+                            DateTime to = reader.GetDateTime(reader.GetOrdinal("ReturnDate"));
+                            bool returned = reader.GetBoolean(reader.GetOrdinal("Returned"));
+                            string rem = reader.SafeGetString(reader.GetOrdinal("Remarks"));
+
+                            string isbn = "";
+                            string title = "";
+                            string fname = "";
+                            string lname = "";
+                            
+                            try
+                            {
+                                isbn = reader.SafeGetString(reader.GetOrdinal("ISBN"));
+                                title = reader.SafeGetString(reader.GetOrdinal("Title"));
+                                fname = reader.SafeGetString(reader.GetOrdinal("FirstName"));
+                                lname = reader.SafeGetString(reader.GetOrdinal("LastName"));
+                            }
+                            catch
+                            { }
+
+                            Lease l = new Lease(id, bookid, userid, quant,
+                                from, to, returned, rem,
+                                isbn, title, fname, lname);
+
+                            leases.Add(l);
+                        }
+                    }
+                }
+
+
+                return leases;
+            }
+        }
+
+        public List<Lease> GetAllLeases()
+        {
+            string query = "SELECT "
+
+                            + "DISTINCT(dbo.Leases.Id), dbo.Leases.BookId, dbo.Leases.Quantity, "
+                            + "dbo.Leases.UserId, dbo.Leases.LeaseDate, dbo.Leases.ReturnDate, "
+                            + "dbo.Leases.Returned, dbo.Leases.Remarks, "
+
+                            + "(SELECT dbo.Books.ISBN FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as ISBN, "
+                            + "(SELECT dbo.Books.Title FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as Title, "
+                            + "(SELECT dbo.Users.FirstName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as FirstName, "
+                            + "(SELECT dbo.Users.LastName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as LastName "
+
+                            + "FROM dbo.Leases, dbo.Books";
+
+            return this.LeaseQuery(query, new SQLParameter[] { });
+        }
+
+        public List<Lease> GetAllActiveLeases()
+        {
+            string query = "SELECT "
+
+                            + "DISTINCT(dbo.Leases.Id), dbo.Leases.BookId, dbo.Leases.Quantity, "
+                            + "dbo.Leases.UserId, dbo.Leases.LeaseDate, dbo.Leases.ReturnDate, "
+                            + "dbo.Leases.Returned, dbo.Leases.Remarks, "
+
+                            + "(SELECT dbo.Books.ISBN FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as ISBN, "
+                            + "(SELECT dbo.Books.Title FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as Title, "
+                            + "(SELECT dbo.Users.FirstName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as FirstName, "
+                            + "(SELECT dbo.Users.LastName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as LastName "
+
+                            + "FROM dbo.Leases, dbo.Books WHERE dbo.Leases.Returned = 0";
+
+            return this.LeaseQuery(query, new SQLParameter[] { });
+        }
+
+        public List<Lease> FindLeaseByName(string name)
+        {
+            string query = "SELECT "
+
+                            + "DISTINCT(dbo.Leases.Id), dbo.Leases.BookId, dbo.Leases.Quantity, "
+                            + "dbo.Leases.UserId, dbo.Leases.LeaseDate, dbo.Leases.ReturnDate, "
+                            + "dbo.Leases.Returned, dbo.Leases.Remarks, "
+
+                            + "(SELECT dbo.Books.ISBN FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as ISBN, "
+                            + "(SELECT dbo.Books.Title FROM dbo.Books WHERE dbo.Books.Id = dbo.Leases.BookId) as Title, "
+                            + "(SELECT dbo.Users.FirstName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as FirstName, "
+                            + "(SELECT dbo.Users.LastName FROM dbo.Users WHERE dbo.Users.Id = dbo.Leases.UserId) as LastName "
+
+                            + "FROM dbo.Leases, dbo.Books WHERE dbo.Leases.Returned = 0 AND "
+                            + "(LOWER(FirstName) LIKE LOWER(@ss) OR LOWER(LastName) LIKE LOWER(@ss))";
+
+
+            SQLParameter par = new SQLParameter();
+            par.name = "@ss";
+            par.value = "%"+name+"%";
+
+            return this.LeaseQuery(query, new SQLParameter[] { par });
+        }
+
+        public bool InsertLease(Lease l)
+        {
+            string query = "INSERT INTO dbo.Leases (BookId, Quantity, UserId, LeaseDate, ReturnDate, Returned," +
+                "Remarks) "
+                + "VALUES (@bookid, @quant, @userid, @from, @to, @ret, @rem)";
+
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@bookid", l.BookId);
+                cmd.Parameters.AddWithValue("@quant", l.Quantity);
+                cmd.Parameters.AddWithValue("@userid", l.UserId);
+                cmd.Parameters.AddWithValue("@from", l.LeaseDate);
+                cmd.Parameters.AddWithValue("@to", l.ReturnDate);
+                cmd.Parameters.AddWithValue("@ret", l.Returned);
+                cmd.Parameters.AddWithValue("@rem", l.Remarks);
+
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+
     }
     
+
 }

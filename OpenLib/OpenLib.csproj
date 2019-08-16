@@ -92,6 +92,12 @@
     <Compile Include="Forms\CreateAdmin.Designer.cs">
       <DependentUpon>CreateAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CreateLease.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateLease.Designer.cs">
+      <DependentUpon>CreateLease.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     <Compile Include="Forms\EditBook.Designer.cs">
       <DependentUpon>EditBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FindUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FindUser.Designer.cs">
+      <DependentUpon>FindUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ListAdmins.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +127,12 @@
     </Compile>
     <Compile Include="Forms\ListBooks.Designer.cs">
       <DependentUpon>ListBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListLeases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListLeases.Designer.cs">
+      <DependentUpon>ListLeases.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ListUsers.cs">
       <SubType>Form</SubType>
@@ -134,6 +152,12 @@
     <Compile Include="Forms\ModifyUser.Designer.cs">
       <DependentUpon>ModifyUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScanISBN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScanISBN.Designer.cs">
+      <DependentUpon>ScanISBN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchBook.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +171,7 @@
       <DependentUpon>SearchDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ISBNApi.cs" />
+    <Compile Include="Lease.cs" />
     <Compile Include="OpenLibDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,17 +192,26 @@
     <EmbeddedResource Include="Forms\CreateAdmin.resx">
       <DependentUpon>CreateAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateLease.resx">
+      <DependentUpon>CreateLease.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditAdmin.resx">
       <DependentUpon>EditAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditBook.resx">
       <DependentUpon>EditBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FindUser.resx">
+      <DependentUpon>FindUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListAdmins.resx">
       <DependentUpon>ListAdmins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListBooks.resx">
       <DependentUpon>ListBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListLeases.resx">
+      <DependentUpon>ListLeases.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ListUsers.resx">
       <DependentUpon>ListUsers.cs</DependentUpon>
@@ -187,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyUser.resx">
       <DependentUpon>ModifyUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScanISBN.resx">
+      <DependentUpon>ScanISBN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchBook.resx">
       <DependentUpon>SearchBook.cs</DependentUpon>

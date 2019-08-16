@@ -49,6 +49,13 @@ namespace OpenLib
                 //MessageBox.Show("Failed to fetch book online.");
                 return null;//new Book(string.Empty, string.Empty, string.Empty, string.Empty);
             }
+
+        }
+
+        public static string CleanISBN(string isbn)
+        {
+            isbn = isbn.ToLower().Replace("isbn", "").Replace(" ", "").Replace("-", "").Trim();
+            return isbn;
         }
     }
 }

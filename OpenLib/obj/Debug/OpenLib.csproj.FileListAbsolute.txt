@@ -39,3 +39,7 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssem
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListBooks.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.EditBook.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchBook.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListLeases.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.CreateLease.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ScanISBN.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.FindUser.resources

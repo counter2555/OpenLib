@@ -29,13 +29,20 @@ namespace OpenLib.Forms
                     b.Id.ToString(),
                     b.ISBN,
                     b.Quantity.ToString(),
+                    b.Borrowed.ToString(),
                     b.Title,
                     b.Author,
                     b.Description,
-                    b.Remarks
+                    b.Remarks,
+                    
                 };
 
                 ListViewItem itm = new ListViewItem(items);
+                if (b.Borrowed > 0)
+                    itm.BackColor = Color.Bisque;
+                else
+                    itm.BackColor = Color.Transparent;
+
                 this.listView1.Items.Add(itm);
             }
         }
@@ -50,7 +57,7 @@ namespace OpenLib.Forms
             Forms.AddBook dlg = new Forms.AddBook();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                string isbn = dlg.CleanISBN(dlg.isbn.Text);
+                string isbn = ISBNApi.CleanISBN(dlg.isbn.Text);
                 string title = dlg.title.Text;
                 string author = dlg.authors.Text;
                 string desc = dlg.desc.Text;
@@ -152,6 +159,44 @@ namespace OpenLib.Forms
             }
         }
 
+        public void AddLease()
+        {
+            if(this.listView1.SelectedItems.Count > 0)
+            {
+                Book b = Book.FromListView(this.listView1.SelectedItems[0]);
+                if (b.Borrowed < b.Quantity)
+                {
+                    Forms.CreateLease dlg = new CreateLease(db_handler);
+                    dlg.bookid.Text = b.Id.ToString();
+
+                    int diff = b.Quantity - b.Borrowed;
+                    dlg.quantity.Maximum = diff;
+
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        int bookId = Convert.ToInt32(dlg.bookid.Text);
+                        int userId = Convert.ToInt32(dlg.userid.Text);
+                        int quant = (int)dlg.quantity.Value;
+
+                        Lease l = new Lease(-1, bookId, userId, quant, dlg.from.Value,
+                            dlg.to.Value, false, dlg.remarks.Text,
+                            "", "", "", "");
+
+                        if (db_handler.InsertLease(l))
+                            MessageBox.Show("Lease successfully creaed.", "Success",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        PopulateListView();
+                    }
+                }
+                else
+                    MessageBox.Show("All books have already been leased.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ListBooks_Load(object sender, EventArgs e)
         {
             PopulateListView();
@@ -195,6 +240,16 @@ namespace OpenLib.Forms
         private void ToolStripButton4_Click(object sender, EventArgs e)
         {
             EditBook();
+        }
+
+        private void ToolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddLeaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddLease();
         }
     }
 }

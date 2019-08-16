@@ -107,5 +107,16 @@ namespace OpenLib
             Forms.ListBooks dlg = new Forms.ListBooks(db_handler);
             dlg.Show();
         }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            Forms.ListLeases dlg = new Forms.ListLeases(db_handler);
+            dlg.Show();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            db_handler.End();
+        }
     }
 }
