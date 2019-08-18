@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListUsers));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.userView = new System.Windows.Forms.ListView();
             this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.firstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,7 +58,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.listView1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.userView);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(2);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1770, 852);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -73,30 +73,30 @@
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // listView1
+            // userView
             // 
-            this.listView1.AllowColumnReorder = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.userView.AllowColumnReorder = true;
+            this.userView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Id,
             this.firstName,
             this.lastName,
             this.birthday,
             this.columnHeader1});
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1770, 852);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
-            this.listView1.DoubleClick += new System.EventHandler(this.ListView1_DoubleClick);
+            this.userView.ContextMenuStrip = this.contextMenuStrip1;
+            this.userView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userView.FullRowSelect = true;
+            this.userView.GridLines = true;
+            this.userView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.userView.HideSelection = false;
+            this.userView.Location = new System.Drawing.Point(0, 0);
+            this.userView.Margin = new System.Windows.Forms.Padding(2);
+            this.userView.Name = "userView";
+            this.userView.Size = new System.Drawing.Size(1770, 852);
+            this.userView.TabIndex = 0;
+            this.userView.UseCompatibleStateImageBehavior = false;
+            this.userView.View = System.Windows.Forms.View.Details;
+            this.userView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
+            this.userView.DoubleClick += new System.EventHandler(this.ListView1_DoubleClick);
             // 
             // Id
             // 
@@ -137,7 +137,7 @@
             // 
             this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
             this.editUserToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(278, 38);
             this.editUserToolStripMenuItem.Text = "Edit User";
             this.editUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
@@ -145,7 +145,7 @@
             // 
             this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
             this.addUserToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(278, 38);
             this.addUserToolStripMenuItem.Text = "Add User";
             this.addUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
@@ -153,7 +153,7 @@
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
             this.deleteUserToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(278, 38);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
             // 
@@ -187,7 +187,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(45, 44);
+            this.toolStripButton3.Size = new System.Drawing.Size(61, 44);
             this.toolStripButton3.Text = "toolStripButton3";
             this.toolStripButton3.ToolTipText = "Undo Search";
             this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3_Click);
@@ -198,7 +198,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(45, 44);
+            this.toolStripButton2.Size = new System.Drawing.Size(61, 44);
             this.toolStripButton2.Text = "toolStripButton2";
             this.toolStripButton2.ToolTipText = "Add User";
             this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2_Click);
@@ -209,7 +209,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(45, 44);
+            this.toolStripButton4.Size = new System.Drawing.Size(61, 44);
             this.toolStripButton4.Text = "toolStripButton4";
             this.toolStripButton4.ToolTipText = "Edit Selected User";
             this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4_Click);
@@ -240,7 +240,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView userView;
         private System.Windows.Forms.ColumnHeader firstName;
         private System.Windows.Forms.ColumnHeader lastName;
         private System.Windows.Forms.ColumnHeader birthday;

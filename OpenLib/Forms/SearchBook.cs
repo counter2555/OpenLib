@@ -17,27 +17,42 @@ namespace OpenLib.Forms
 
         private void Remarks_TextChanged(object sender, EventArgs e)
         {
-            this.checkRem.Checked = true;
+            if (this.remarks.Text.Length > 0)
+                this.checkRem.Checked = true;
+            else
+                this.checkRem.Checked = false;
         }
 
         private void Title_TextChanged(object sender, EventArgs e)
         {
-            this.checkTitle.Checked = true;
+            if (this.title.Text.Length > 0)
+                this.checkTitle.Checked = true;
+            else
+                this.checkTitle.Checked = false;
         }
 
         private void Authors_TextChanged(object sender, EventArgs e)
         {
-            this.checkAuthors.Checked = true;
+            if (this.authors.Text.Length > 0)
+                this.checkAuthors.Checked = true;
+            else
+                this.checkAuthors.Checked = false;
         }
 
         private void Isbn_TextChanged(object sender, EventArgs e)
         {
-            this.checkISBN.Checked = true;
+            if (this.isbn.Text.Length > 0)
+                this.checkISBN.Checked = true;
+            else
+                this.checkISBN.Checked = false;
         }
 
         private void Quantity_ValueChanged(object sender, EventArgs e)
         {
-            this.checkQuant.Checked = true;
+            if (this.quantity.Value > 0)
+                this.checkQuant.Checked = true;
+            else
+                this.checkQuant.Checked = false;
         }
 
         private void Quantity_to_ValueChanged(object sender, EventArgs e)
@@ -47,7 +62,10 @@ namespace OpenLib.Forms
 
         private void Desc_TextChanged(object sender, EventArgs e)
         {
-            this.checkDesc.Checked = true;
+            if (this.desc.Text.Length > 0)
+                this.checkDesc.Checked = true;
+            else
+                this.checkDesc.Checked = false;
         }
     }
 }

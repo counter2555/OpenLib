@@ -44,6 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.returned = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,10 +148,10 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button2.Location = new System.Drawing.Point(144, 382);
+            this.button2.Location = new System.Drawing.Point(144, 447);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(131, 39);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 9;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
@@ -158,10 +159,10 @@
             // button3
             // 
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button3.Location = new System.Drawing.Point(291, 382);
+            this.button3.Location = new System.Drawing.Point(291, 447);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(131, 39);
-            this.button3.TabIndex = 9;
+            this.button3.TabIndex = 10;
             this.button3.Text = "Cancel";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -202,13 +203,24 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
+            // returned
+            // 
+            this.returned.AutoSize = true;
+            this.returned.Location = new System.Drawing.Point(144, 378);
+            this.returned.Name = "returned";
+            this.returned.Size = new System.Drawing.Size(124, 29);
+            this.returned.TabIndex = 8;
+            this.returned.Text = "returned";
+            this.returned.UseVisualStyleBackColor = true;
+            // 
             // CreateLease
             // 
             this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button3;
-            this.ClientSize = new System.Drawing.Size(756, 442);
+            this.ClientSize = new System.Drawing.Size(756, 498);
+            this.Controls.Add(this.returned);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button4;
+        public System.Windows.Forms.CheckBox returned;
     }
 }

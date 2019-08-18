@@ -39,6 +39,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addLeaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteBooksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.addLeaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -97,6 +97,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_MouseDoubleClick);
             // 
             // columnHeader1
@@ -137,13 +138,21 @@
             this.addBookToolStripMenuItem,
             this.deleteBooksToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(336, 200);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(336, 156);
+            // 
+            // addLeaseToolStripMenuItem
+            // 
+            this.addLeaseToolStripMenuItem.Name = "addLeaseToolStripMenuItem";
+            this.addLeaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.addLeaseToolStripMenuItem.Size = new System.Drawing.Size(335, 38);
+            this.addLeaseToolStripMenuItem.Text = "Add Lease";
+            this.addLeaseToolStripMenuItem.Click += new System.EventHandler(this.AddLeaseToolStripMenuItem_Click);
             // 
             // editBookToolStripMenuItem
             // 
             this.editBookToolStripMenuItem.Name = "editBookToolStripMenuItem";
             this.editBookToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.editBookToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.editBookToolStripMenuItem.Size = new System.Drawing.Size(335, 38);
             this.editBookToolStripMenuItem.Text = "Edit Books";
             this.editBookToolStripMenuItem.Click += new System.EventHandler(this.EditBookToolStripMenuItem_Click);
             // 
@@ -151,7 +160,7 @@
             // 
             this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
             this.addBookToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(335, 38);
             this.addBookToolStripMenuItem.Text = "Add Book";
             this.addBookToolStripMenuItem.Click += new System.EventHandler(this.AddBookToolStripMenuItem_Click);
             // 
@@ -159,7 +168,7 @@
             // 
             this.deleteBooksToolStripMenuItem.Name = "deleteBooksToolStripMenuItem";
             this.deleteBooksToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteBooksToolStripMenuItem.Size = new System.Drawing.Size(300, 38);
+            this.deleteBooksToolStripMenuItem.Size = new System.Drawing.Size(335, 38);
             this.deleteBooksToolStripMenuItem.Text = "Delete Books";
             this.deleteBooksToolStripMenuItem.Click += new System.EventHandler(this.DeleteBooksToolStripMenuItem_Click);
             // 
@@ -220,14 +229,6 @@
             this.toolStripButton4.Text = "toolStripButton4";
             this.toolStripButton4.ToolTipText = "Edit Book";
             this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4_Click);
-            // 
-            // addLeaseToolStripMenuItem
-            // 
-            this.addLeaseToolStripMenuItem.Name = "addLeaseToolStripMenuItem";
-            this.addLeaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
-            this.addLeaseToolStripMenuItem.Size = new System.Drawing.Size(335, 38);
-            this.addLeaseToolStripMenuItem.Text = "Add Lease";
-            this.addLeaseToolStripMenuItem.Click += new System.EventHandler(this.AddLeaseToolStripMenuItem_Click);
             // 
             // ListBooks
             // 

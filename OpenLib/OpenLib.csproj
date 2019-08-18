@@ -86,6 +86,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CheckedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckedTextBox.Designer.cs">
+      <DependentUpon>CheckedTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,12 @@
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ModifyUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,11 +176,23 @@
     <Compile Include="Forms\SearchBook.Designer.cs">
       <DependentUpon>SearchBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SearchBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SearchBooks.Designer.cs">
+      <DependentUpon>SearchBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SearchDialog.Designer.cs">
       <DependentUpon>SearchDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SearchLeases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SearchLeases.Designer.cs">
+      <DependentUpon>SearchLeases.cs</DependentUpon>
     </Compile>
     <Compile Include="ISBNApi.cs" />
     <Compile Include="Lease.cs" />
@@ -188,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CheckedTextBox.resx">
+      <DependentUpon>CheckedTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateAdmin.resx">
       <DependentUpon>CreateAdmin.cs</DependentUpon>
@@ -219,6 +246,9 @@
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyUser.resx">
       <DependentUpon>ModifyUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -228,8 +258,14 @@
     <EmbeddedResource Include="Forms\SearchBook.resx">
       <DependentUpon>SearchBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SearchBooks.resx">
+      <DependentUpon>SearchBooks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchDialog.resx">
       <DependentUpon>SearchDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SearchLeases.resx">
+      <DependentUpon>SearchLeases.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

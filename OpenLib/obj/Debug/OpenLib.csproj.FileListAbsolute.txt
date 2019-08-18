@@ -35,7 +35,6 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csproj.CopyComplete
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.AddBook.resources
-C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssemblyReference.cache
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListBooks.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.EditBook.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchBook.resources
@@ -43,3 +42,8 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ListL
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.CreateLease.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.ScanISBN.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.FindUser.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.CheckedTextBox.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchBooks.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.SearchLeases.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.csprojAssemblyReference.cache
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Debug\OpenLib.Forms.MainForm.resources

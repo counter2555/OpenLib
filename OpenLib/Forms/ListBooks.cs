@@ -134,10 +134,10 @@ namespace OpenLib.Forms
 
         public void SearchBook()
         {
-            Forms.SearchBook dlg = new SearchBook();
+            Forms.SearchBooks dlg = new SearchBooks();
             if(dlg.ShowDialog() == DialogResult.OK)
             {
-                List<Book> finds = db_handler.SearchBooks(dlg.title.Text,
+                /*List<Book> finds = db_handler.SearchBooks(dlg.title.Text,
                     dlg.authors.Text,
                     dlg.isbn.Text,
                     (int)dlg.quantity.Value, (int)dlg.quantity_to.Value,
@@ -148,7 +148,20 @@ namespace OpenLib.Forms
                     dlg.checkISBN.Checked,
                     dlg.checkQuant.Checked,
                     dlg.checkDesc.Checked,
-                    dlg.checkRem.Checked);
+                    dlg.checkRem.Checked);*/
+
+                List<Book> finds = db_handler.SearchBooks(dlg.title.Content,
+                    dlg.authors.Content,
+                    dlg.isbn.Content,
+                    -1, int.MaxValue,
+                    dlg.description.Content,
+                    dlg.remarks.Content,
+                    dlg.title.Checked,
+                    dlg.authors.Checked,
+                    dlg.isbn.Checked,
+                    false,
+                    dlg.description.Checked,
+                    dlg.remarks.Checked);
 
                 if (finds != null)
                 {
@@ -178,8 +191,10 @@ namespace OpenLib.Forms
                         int userId = Convert.ToInt32(dlg.userid.Text);
                         int quant = (int)dlg.quantity.Value;
 
+                        bool ret = dlg.returned.Checked;
+
                         Lease l = new Lease(-1, bookId, userId, quant, dlg.from.Value,
-                            dlg.to.Value, false, dlg.remarks.Text,
+                            dlg.to.Value, ret, dlg.remarks.Text,
                             "", "", "", "");
 
                         if (db_handler.InsertLease(l))
@@ -250,6 +265,11 @@ namespace OpenLib.Forms
         private void AddLeaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddLease();
+        }
+
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

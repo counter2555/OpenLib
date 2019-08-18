@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListLeases));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.leaseView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,12 +40,16 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editLeaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteLeaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +58,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.listView1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.leaseView);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1260, 701);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
@@ -66,9 +71,9 @@
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // listView1
+            // leaseView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.leaseView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -77,16 +82,19 @@
             this.columnHeader7,
             this.columnHeader5,
             this.columnHeader8});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1260, 701);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.leaseView.ContextMenuStrip = this.contextMenuStrip1;
+            this.leaseView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leaseView.FullRowSelect = true;
+            this.leaseView.GridLines = true;
+            this.leaseView.HideSelection = false;
+            this.leaseView.Location = new System.Drawing.Point(0, 0);
+            this.leaseView.Name = "leaseView";
+            this.leaseView.Size = new System.Drawing.Size(1260, 701);
+            this.leaseView.TabIndex = 0;
+            this.leaseView.UseCompatibleStateImageBehavior = false;
+            this.leaseView.View = System.Windows.Forms.View.Details;
+            this.leaseView.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
+            this.leaseView.DoubleClick += new System.EventHandler(this.ListView1_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -126,6 +134,31 @@
             // 
             this.columnHeader8.Text = "Firstname";
             this.columnHeader8.Width = 184;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editLeaseToolStripMenuItem,
+            this.deleteLeaseToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(284, 80);
+            // 
+            // editLeaseToolStripMenuItem
+            // 
+            this.editLeaseToolStripMenuItem.Name = "editLeaseToolStripMenuItem";
+            this.editLeaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.editLeaseToolStripMenuItem.Size = new System.Drawing.Size(283, 38);
+            this.editLeaseToolStripMenuItem.Text = "Edit Lease";
+            this.editLeaseToolStripMenuItem.Click += new System.EventHandler(this.EditLeaseToolStripMenuItem_Click);
+            // 
+            // deleteLeaseToolStripMenuItem
+            // 
+            this.deleteLeaseToolStripMenuItem.Name = "deleteLeaseToolStripMenuItem";
+            this.deleteLeaseToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteLeaseToolStripMenuItem.Size = new System.Drawing.Size(283, 38);
+            this.deleteLeaseToolStripMenuItem.Text = "Delete Lease";
+            this.deleteLeaseToolStripMenuItem.Click += new System.EventHandler(this.DeleteLeaseToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -176,6 +209,7 @@
             this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -185,7 +219,7 @@
         #endregion
 
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView leaseView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -197,5 +231,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editLeaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteLeaseToolStripMenuItem;
     }
 }

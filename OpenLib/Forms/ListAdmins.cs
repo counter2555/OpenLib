@@ -19,24 +19,24 @@ namespace OpenLib.Forms
             InitializeComponent();
         }
 
-        private void PopulateListView(List<Admin> users)
+        private void PopulateAdminView(List<Admin> users)
         {
-            this.listView1.Items.Clear();
+            this.adminView.Items.Clear();
             foreach (Admin a in users)
             {
                 string[] items = {a.Id.ToString(),
                 a.Username};
 
                 ListViewItem itm = new ListViewItem(items);
-                this.listView1.Items.Add(itm);
+                this.adminView.Items.Add(itm);
             }
         }
 
         private void EditSelectedAdmin()
         {
-            if(this.listView1.SelectedItems.Count > 0)
+            if(this.adminView.SelectedItems.Count > 0)
             {
-                Admin a = Admin.FromListView(this.listView1.SelectedItems[0]);
+                Admin a = Admin.FromListView(this.adminView.SelectedItems[0]);
                 Forms.EditAdmin dlg = new EditAdmin();
                 dlg.username.Text = a.Username;
 
@@ -54,25 +54,30 @@ namespace OpenLib.Forms
                     if (!db_handler.UpdateAdmin(a))
                         MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    PopulateListView();
+                    PopulateAdminView();
                 }
             }
         }
 
-        private void PopulateListView()
+        private void PopulateAdminView()
         {
             List<Admin> admins = db_handler.GetAllAdmins();
-            PopulateListView(admins);
+            PopulateAdminView(admins);
         }
 
         private void ListAdmins_Load(object sender, EventArgs e)
         {
-            PopulateListView();
+            PopulateAdminView();
         }
 
         private void ListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             EditSelectedAdmin();
+        }
+
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

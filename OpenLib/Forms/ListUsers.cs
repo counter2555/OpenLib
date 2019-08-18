@@ -19,15 +19,15 @@ namespace OpenLib
             InitializeComponent();
         }
 
-        private void PopulateListView()
+        private void PopulateUserView()
         {
             List<User> users = db_handler.GetAllUsers();
-            PopulateListView(users);
+            PopulateUserView(users);
         }
 
-        private void PopulateListView(List<User> users)
+        private void PopulateUserView(List<User> users)
         {
-            this.listView1.Items.Clear();
+            this.userView.Items.Clear();
             foreach (User u in users)
             {
                 string[] items = {u.Id.ToString(),
@@ -36,22 +36,18 @@ namespace OpenLib
                 u.Remarks};
 
                 ListViewItem itm = new ListViewItem(items);
-                this.listView1.Items.Add(itm);
+                this.userView.Items.Add(itm);
             }
         }
 
-        private void ListUsers_Load(object sender, EventArgs e)
-        {
-            PopulateListView();
-        }
 
         public void EditUser()
         {
-            if(this.listView1.SelectedItems.Count > 0 )
+            if(this.userView.SelectedItems.Count > 0 )
             {
                 ModifyUser dlg = new ModifyUser();
 
-                User u = User.FromListView(this.listView1.SelectedItems[0]);
+                User u = User.FromListView(this.userView.SelectedItems[0]);
 
                 dlg.firstName.Text = u.FirstName;
                 dlg.lastName.Text = u.LastName;
@@ -68,30 +64,30 @@ namespace OpenLib
 
                     db_handler.UpdateUser(u2);
 
-                    this.listView1.Items.Clear();
-                    PopulateListView();
+                    this.userView.Items.Clear();
+                    PopulateUserView();
                 }
             }
         }
 
         public void DeleteSelectedUsers()
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if (this.userView.SelectedItems.Count > 0)
             {
-                int count = this.listView1.SelectedItems.Count;
+                int count = this.userView.SelectedItems.Count;
                 if (MessageBox.Show("Are you sure to delete "+count.ToString()
                     +" users?\nThis cannot be undone afterwards.", "Deleting Users", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     uint succ_count = 0;
-                    foreach(ListViewItem lvi in this.listView1.SelectedItems)
+                    foreach(ListViewItem lvi in this.userView.SelectedItems)
                     {
                         User u = User.FromListView(lvi);
                         if (db_handler.DeleteUser(u))
                             succ_count++;
                     }
 
-                    PopulateListView();
+                    PopulateUserView();
 
                     MessageBox.Show(succ_count.ToString()+" of "+count.ToString()+" users deleted successfully.",
                         "Deleting Users", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,7 +110,7 @@ namespace OpenLib
                 bool done = db_handler.InsertUser(u);
 
                 if (done)
-                    PopulateListView();
+                    PopulateUserView();
                 else
                     MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -133,7 +129,7 @@ namespace OpenLib
             {
                 List<User> users = db_handler.SearchUserByName(dlg.searchText.Text);
                 
-                PopulateListView(users);
+                PopulateUserView(users);
             }
         }
 
@@ -164,12 +160,17 @@ namespace OpenLib
 
         private void ToolStripButton3_Click(object sender, EventArgs e)
         {
-            PopulateListView();
+            PopulateUserView();
         }
 
         private void ToolStripButton4_Click(object sender, EventArgs e)
         {
             EditUser();
+        }
+
+        private void ListUsers_Load(object sender, EventArgs e)
+        {
+            PopulateUserView();
         }
     }
 }
