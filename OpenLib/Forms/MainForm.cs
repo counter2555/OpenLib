@@ -511,6 +511,7 @@ namespace OpenLib.Forms
 
                     db_handler.UpdateLease(l);
                     PopulateLeaseView();
+                    PopulateBookView();
                 }
 
             }
