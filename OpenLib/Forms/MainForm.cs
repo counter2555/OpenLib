@@ -74,6 +74,8 @@ namespace OpenLib.Forms
                 }
                 else
                 {
+
+                    this.Backup = false;
                     Application.Exit();
                 }
             }
