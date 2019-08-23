@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
+using System.Windows.Forms;
 
 namespace OpenLib
 {
@@ -80,6 +82,33 @@ namespace OpenLib
                 else
                     return true;
             }
+        }
+
+        public bool DeleteAdmin(int admin)
+        {
+            string query = "DELETE FROM dbo.Administrators WHERE Id = @Id";
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                cmd.Parameters.AddWithValue("@Id", admin);
+
+                int result = cmd.ExecuteNonQuery();
+
+                if (result < 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool DeleteAdmins(List<int> admins)
+        {
+            bool successful = true;
+            foreach (int u in admins)
+            {
+                if (this.DeleteAdmin(u) == false)
+                    successful = false;
+            }
+            return successful;
         }
 
         public List<Admin> AdminQuery(string query, SQLParameter[] parameters)
@@ -797,6 +826,137 @@ namespace OpenLib
                     successful = false;
             }
             return successful;
+        }
+
+        public void Backup(string filename)
+        {
+            //BACKUP DATABASE [MyDatabase] TO  DISK = 'C:\....\MyDatabase.bak'
+            string query = "BACKUP DATABASE [OpenLibDB] TO  DISK = '"+filename+"' WITH INIT, STATS=10";
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                int result = cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Restore(string filename)
+        {
+            string query = "RESTORE DATABASE [OpenLibDB] FROM  DISK = '" + filename + "'";
+            using (SqlCommand cmd = new SqlCommand(query, this.conn))
+            {
+                int result = cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static bool CheckDB()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(Properties.Settings.Default.connect_string))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT * FROM [dbo].[Books]";
+                        int s = command.ExecuteNonQuery();
+                    }
+                    connection.Close();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static void ClearDB()
+        {
+            try
+            {
+                using (var connection = new SqlConnection(Properties.Settings.Default.connect_string))
+                {
+                    connection.Open();
+
+
+                    string[] tableCmds =
+                    {
+                        "DROP TABLE IF EXISTS [dbo].[Administrators]",
+                        "DROP TABLE IF EXISTS [dbo].[Books]",
+                        "DROP TABLE IF EXISTS [dbo].[Leases]",
+                        "DROP TABLE IF EXISTS [dbo].[Users]",
+                        "DROP DATABASE IF EXISTS [OpenLibDB]"
+                };
+
+                    foreach (string c in tableCmds)
+                    {
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = c;
+                            int l = command.ExecuteNonQuery();
+                        }
+                    }
+
+                    if(System.IO.File.Exists(Properties.Settings.Default.db_file))
+                    {
+                        System.IO.File.Delete(Properties.Settings.Default.db_file);
+                    }
+
+                    connection.Close();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+
+
+        public static void CreateDBFile(string filename)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(Properties.Settings.Default.connect_string))
+                {
+                    connection.Open();
+
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "CREATE DATABASE [OpenLibDB] ON PRIMARY (NAME=OpenLibDB,"
+                        + "FILENAME='" + filename + "')";
+                        command.ExecuteNonQuery();
+                    }
+
+                    string[] tableCmds =
+                    {
+                        "CREATE TABLE [dbo].[Administrators] ( [Id] INT IDENTITY (1, 1) NOT NULL, [Username] VARCHAR (40) NOT NULL, [Salt] VARCHAR (200) NOT NULL, [HASH] VARCHAR (200) NOT NULL, PRIMARY KEY CLUSTERED ([Id] ASC));",
+                        "CREATE TABLE [dbo].[Books] ( [Id] INT IDENTITY (1, 1) NOT NULL, [ISBN] VARCHAR (100) NULL, [Title] VARCHAR (300) NULL, [Author] VARCHAR (300) NULL, [Quantity] INT DEFAULT ((1)) NOT NULL, [Description] VARCHAR (MAX) NULL, [Remarks] VARCHAR (MAX) NULL, PRIMARY KEY CLUSTERED ([Id] ASC) ); ",
+                        "CREATE TABLE [dbo].[Leases] ( [Id] INT IDENTITY (1, 1) NOT NULL, [BookId] INT NOT NULL, [Quantity] INT DEFAULT ((1)) NOT NULL, [UserId] INT NOT NULL, [LeaseDate] DATE NOT NULL, [ReturnDate] DATE NOT NULL, [Returned] BIT DEFAULT ((0)) NOT NULL, [Remarks] VARCHAR (MAX) NULL, PRIMARY KEY CLUSTERED ([Id] ASC) ); ",
+                        "CREATE TABLE [dbo].[Users] ( [Id] INT IDENTITY (1, 1) NOT NULL, [FirstName] VARCHAR (40) NOT NULL, [LastName] VARCHAR (40) NOT NULL, [Birthday] DATE NOT NULL, [Remarks] VARCHAR (MAX) NULL, PRIMARY KEY CLUSTERED ([Id] ASC) ); "
+                    };
+
+                    foreach (string c in tableCmds)
+                    {
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = c;
+                            int l = command.ExecuteNonQuery();
+                            //MessageBox.Show(c + "\n" + l.ToString());
+                        }
+                    }
+                    Properties.Settings.Default.db_file = filename;
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (MessageBox.Show("An Error occured:\n" + ex.Message + "\n\nDo you want to delete the database?", "Error",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    DBHandler.ClearDB();
+                }
+            }
         }
 
 

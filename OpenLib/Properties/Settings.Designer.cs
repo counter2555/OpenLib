@@ -25,21 +25,44 @@ namespace OpenLib.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\OpenLibDB.mdf" +
-            ";Integrated Security=True;Connect Timeout=30")]
-        public string OpenLibDBConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("PerMonitorVPerMonitorV2")]
+        public string DpiAwareness {
             get {
-                return ((string)(this["OpenLibDBConnectionString"]));
+                return ((string)(this["DpiAwareness"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=(localdb)\\MSSQLLocalDB")]
+        public string connect_string {
+            get {
+                return ((string)(this["connect_string"]));
+            }
+            set {
+                this["connect_string"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string db_file {
+            get {
+                return ((string)(this["db_file"]));
+            }
+            set {
+                this["db_file"] = value;
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("PerMonitorVPerMonitorV2")]
-        public string DpiAwareness {
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=(localdb)\\MSSQLLocalDB")]
+        public string OpenLibDBConnectionString {
             get {
-                return ((string)(this["DpiAwareness"]));
+                return ((string)(this["OpenLibDBConnectionString"]));
             }
         }
     }

@@ -7,15 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.IO;
 
 namespace OpenLib.Forms
 {
     public partial class MainForm : Form
     {
-        private DBHandler db_handler = new DBHandler(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\OpenLibDB.mdf;Integrated Security=True;Connect Timeout=30");
-
+        private DBHandler db_handler;
         public MainForm()
         {
+            if(!DBHandler.CheckDB())
+            {
+                Forms.Setup dlg = new Setup();
+                if(dlg.ShowDialog() == DialogResult.OK)
+                {
+                    DBHandler.ClearDB();
+                    DBHandler.CreateDBFile(dlg.filename.Text);
+
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+
+            db_handler = new DBHandler(Properties.Settings.Default.connect_string);
             InitializeComponent();
         }
 
@@ -246,6 +263,7 @@ namespace OpenLib.Forms
                             MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                         PopulateBookView();
+                        PopulateLeaseView();
                     }
                 }
                 else
@@ -351,7 +369,7 @@ namespace OpenLib.Forms
             }
         }
 
-        public void DeleteSelectedUsers()
+        public void DeleteUser()
         {
             if (this.userView.SelectedItems.Count > 0)
             {
@@ -521,6 +539,7 @@ namespace OpenLib.Forms
                     }
 
                     PopulateLeaseView();
+                    PopulateBookView();
                 }
             }
         }
@@ -601,6 +620,75 @@ namespace OpenLib.Forms
             }
         }
 
+        private void DeleteAdmin()
+        {
+            int count = this.adminView.SelectedItems.Count;
+            if (count > 0)
+            {
+                if (MessageBox.Show("Are you sure to delete " + count.ToString() + " entries?\nIt cannot be undone.",
+                    "Deleting Admins", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    List<int> todel = new List<int>();
+                    foreach (ListViewItem lvi in this.adminView.SelectedItems)
+                    {
+                        int l = Convert.ToInt32(lvi.SubItems[0].Text);
+                        todel.Add(l);
+                    }
+
+                    if (db_handler.DeleteAdmins(todel))
+                    {
+                        MessageBox.Show(count.ToString() + " entries deleted successfully.", "Deleting Admins",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    PopulateAdminView();
+                }
+            }
+        }
+
+        /*
+         * 
+         *  OTHER
+         *  
+         *  */
+
+        private static void ClearDB()
+        {
+            if(MessageBox.Show("Are you sure to delete everything? This can not be undone.", "Clear Database",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                DBHandler.ClearDB();
+                MessageBox.Show("Database cleared. The application will close now.",
+                    "Clear Database", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Exit();
+            }
+        }
+
+        public void BackupDB()
+        {
+            if(this.saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                db_handler.Backup(this.saveFileDialog.FileName);
+            }
+        }
+
+        public void RestoreDB()
+        {
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                db_handler.Restore(this.saveFileDialog.FileName);
+
+                PopulateAdminView();
+                PopulateBookView();
+                PopulateLeaseView();
+                PopulateUserView();
+            }
+        }
+
         /*
          * -------------------------
          *         EVENTS
@@ -678,7 +766,7 @@ namespace OpenLib.Forms
 
         private void DeleteUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteSelectedUsers();
+            DeleteUser();
         }
 
         private void LeaseView_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -779,10 +867,21 @@ namespace OpenLib.Forms
         {
             if (this.tabControl1.SelectedIndex == 3)
             {
-                this.toolStrip1.Enabled = false;
+                this.SearchButton.Enabled = false;
+                this.ResetSearchButton.Enabled = false;
             }
             else
-                this.toolStrip1.Enabled = true;
+            {
+                this.SearchButton.Enabled = true;
+                this.ResetSearchButton.Enabled = true;
+            }
+
+            if (this.tabControl1.SelectedIndex == 2)
+            {
+                this.AddButton.Enabled = false;
+            }
+            else
+                this.AddButton.Enabled = true;
         }
 
         private void TabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -808,6 +907,83 @@ namespace OpenLib.Forms
         private void BookView_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
             EditBook();
+        }
+
+        private void DeleteDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearDB();
+        }
+
+        private void BackupDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BackupDB();
+        }
+
+        private void RestoreDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RestoreDB();
+        }
+
+        void RunWait()
+        {
+            Forms.Wait dlg = new Wait();
+            Application.Run(dlg);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                System.Threading.ThreadStart ts = new System.Threading.ThreadStart(RunWait);
+                System.Threading.Thread td = new System.Threading.Thread(ts);
+                td.Start();
+
+                db_handler.Backup(Environment.CurrentDirectory + "\\autobackup.bak");
+                //System.Threading.Thread.Sleep(10000);
+                td.Abort();
+            }
+            catch
+            { }
+        }
+
+        private void DeleteAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                DeleteAdmin();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            switch (this.tabControl1.SelectedIndex)
+            {
+                case 0:
+                    AddBook();
+                    break;
+                case 1:
+                    AddUser();
+                    break;
+                case 3:
+                    AddAdmin();
+                    break;
+            }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            switch (this.tabControl1.SelectedIndex)
+            {
+                case 0:
+                    DeleteBook();
+                    break;
+                case 1:
+                    DeleteUser();
+                    break;
+                case 2:
+                    DeleteLeases();
+                    break;
+                case 3:
+                    DeleteAdmin();
+                    break;
+            }
         }
     }
 }
