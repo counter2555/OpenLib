@@ -86,12 +86,12 @@
             this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.AddButton = new System.Windows.Forms.ToolStripButton();
+            this.RemoveButton = new System.Windows.Forms.ToolStripButton();
             this.SearchButton = new System.Windows.Forms.ToolStripButton();
             this.ResetSearchButton = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.AddButton = new System.Windows.Forms.ToolStripButton();
-            this.RemoveButton = new System.Windows.Forms.ToolStripButton();
             this.bookMenu.SuspendLayout();
             this.userMenu.SuspendLayout();
             this.leaseMenu.SuspendLayout();
@@ -287,7 +287,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1436, 648);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1436, 646);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -312,7 +312,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(40, 6);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1436, 648);
+            this.tabControl1.Size = new System.Drawing.Size(1436, 646);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged_1);
             this.tabControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.TabControl1_MouseDoubleClick);
@@ -323,7 +323,7 @@
             this.tabPage1.Location = new System.Drawing.Point(8, 48);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1420, 592);
+            this.tabPage1.Size = new System.Drawing.Size(1420, 590);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Books";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -344,7 +344,7 @@
             this.bookView.HideSelection = false;
             this.bookView.Location = new System.Drawing.Point(3, 3);
             this.bookView.Name = "bookView";
-            this.bookView.Size = new System.Drawing.Size(1414, 586);
+            this.bookView.Size = new System.Drawing.Size(1414, 584);
             this.bookView.TabIndex = 1;
             this.bookView.UseCompatibleStateImageBehavior = false;
             this.bookView.View = System.Windows.Forms.View.Details;
@@ -385,7 +385,7 @@
             this.tabPage2.Location = new System.Drawing.Point(8, 48);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1420, 660);
+            this.tabPage2.Size = new System.Drawing.Size(1420, 592);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Users";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -408,7 +408,7 @@
             this.userView.Location = new System.Drawing.Point(3, 3);
             this.userView.Margin = new System.Windows.Forms.Padding(2);
             this.userView.Name = "userView";
-            this.userView.Size = new System.Drawing.Size(1414, 654);
+            this.userView.Size = new System.Drawing.Size(1414, 586);
             this.userView.TabIndex = 1;
             this.userView.UseCompatibleStateImageBehavior = false;
             this.userView.View = System.Windows.Forms.View.Details;
@@ -444,7 +444,7 @@
             this.tabPage3.Controls.Add(this.leaseView);
             this.tabPage3.Location = new System.Drawing.Point(8, 48);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1420, 660);
+            this.tabPage3.Size = new System.Drawing.Size(1420, 592);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Leases";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -467,7 +467,7 @@
             this.leaseView.HideSelection = false;
             this.leaseView.Location = new System.Drawing.Point(0, 0);
             this.leaseView.Name = "leaseView";
-            this.leaseView.Size = new System.Drawing.Size(1420, 660);
+            this.leaseView.Size = new System.Drawing.Size(1420, 592);
             this.leaseView.TabIndex = 1;
             this.leaseView.UseCompatibleStateImageBehavior = false;
             this.leaseView.View = System.Windows.Forms.View.Details;
@@ -517,7 +517,7 @@
             this.tabPage4.Controls.Add(this.adminView);
             this.tabPage4.Location = new System.Drawing.Point(8, 48);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1420, 660);
+            this.tabPage4.Size = new System.Drawing.Size(1420, 592);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Admins";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -535,7 +535,7 @@
             this.adminView.Location = new System.Drawing.Point(0, 0);
             this.adminView.MultiSelect = false;
             this.adminView.Name = "adminView";
-            this.adminView.Size = new System.Drawing.Size(1420, 660);
+            this.adminView.Size = new System.Drawing.Size(1420, 592);
             this.adminView.TabIndex = 1;
             this.adminView.UseCompatibleStateImageBehavior = false;
             this.adminView.View = System.Windows.Forms.View.Details;
@@ -554,12 +554,13 @@
             // menuStrip1
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1436, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1436, 42);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -569,20 +570,20 @@
             this.backupDatabaseToolStripMenuItem,
             this.deleteDatabaseToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(72, 36);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(72, 38);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // backupDatabaseToolStripMenuItem
             // 
             this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(331, 44);
+            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.backupDatabaseToolStripMenuItem.Text = "Backup Database";
             this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.BackupDatabaseToolStripMenuItem_Click);
             // 
             // deleteDatabaseToolStripMenuItem
             // 
             this.deleteDatabaseToolStripMenuItem.Name = "deleteDatabaseToolStripMenuItem";
-            this.deleteDatabaseToolStripMenuItem.Size = new System.Drawing.Size(331, 44);
+            this.deleteDatabaseToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.deleteDatabaseToolStripMenuItem.Text = "Delete Database";
             this.deleteDatabaseToolStripMenuItem.Click += new System.EventHandler(this.DeleteDatabaseToolStripMenuItem_Click);
             // 
@@ -595,42 +596,10 @@
             this.RemoveButton,
             this.SearchButton,
             this.ResetSearchButton});
-            this.toolStrip1.Location = new System.Drawing.Point(6, 40);
+            this.toolStrip1.Location = new System.Drawing.Point(6, 42);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(438, 110);
             this.toolStrip1.TabIndex = 0;
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SearchButton.Image = ((System.Drawing.Image)(resources.GetObject("SearchButton.Image")));
-            this.SearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(46, 36);
-            this.SearchButton.Text = "toolStripButton1";
-            this.SearchButton.ToolTipText = "Search";
-            this.SearchButton.Click += new System.EventHandler(this.ToolStripButton1_Click);
-            // 
-            // ResetSearchButton
-            // 
-            this.ResetSearchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ResetSearchButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetSearchButton.Image")));
-            this.ResetSearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ResetSearchButton.Name = "ResetSearchButton";
-            this.ResetSearchButton.Size = new System.Drawing.Size(46, 36);
-            this.ResetSearchButton.Text = "toolStripButton2";
-            this.ResetSearchButton.ToolTipText = "Reset Search";
-            this.ResetSearchButton.Click += new System.EventHandler(this.ToolStripButton2_Click);
-            // 
-            // saveFileDialog
-            // 
-            this.saveFileDialog.Filter = "*.dbbak|*.dbbak";
-            this.saveFileDialog.Title = "Backup Database";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Filter = "*.dbbak|*.dbbak";
-            this.openFileDialog1.Title = "Restore Database";
             // 
             // AddButton
             // 
@@ -649,10 +618,42 @@
             this.RemoveButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveButton.Image")));
             this.RemoveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(46, 36);
+            this.RemoveButton.Size = new System.Drawing.Size(104, 104);
             this.RemoveButton.Text = "toolStripButton4";
             this.RemoveButton.ToolTipText = "Remove Element";
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SearchButton.Image = ((System.Drawing.Image)(resources.GetObject("SearchButton.Image")));
+            this.SearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(104, 104);
+            this.SearchButton.Text = "toolStripButton1";
+            this.SearchButton.ToolTipText = "Search";
+            this.SearchButton.Click += new System.EventHandler(this.ToolStripButton1_Click);
+            // 
+            // ResetSearchButton
+            // 
+            this.ResetSearchButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ResetSearchButton.Image = ((System.Drawing.Image)(resources.GetObject("ResetSearchButton.Image")));
+            this.ResetSearchButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ResetSearchButton.Name = "ResetSearchButton";
+            this.ResetSearchButton.Size = new System.Drawing.Size(104, 104);
+            this.ResetSearchButton.Text = "toolStripButton2";
+            this.ResetSearchButton.ToolTipText = "Reset Search";
+            this.ResetSearchButton.Click += new System.EventHandler(this.ToolStripButton2_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "*.dbbak|*.dbbak";
+            this.saveFileDialog.Title = "Backup Database";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "*.dbbak|*.dbbak";
+            this.openFileDialog1.Title = "Restore Database";
             // 
             // MainForm
             // 

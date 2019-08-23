@@ -15,6 +15,7 @@ namespace OpenLib.Forms
     public partial class MainForm : Form
     {
         private DBHandler db_handler;
+        private bool Backup = true;
         public MainForm()
         {
             if(!DBHandler.CheckDB())
@@ -911,6 +912,7 @@ namespace OpenLib.Forms
 
         private void DeleteDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Backup = false;
             ClearDB();
         }
 
@@ -934,13 +936,16 @@ namespace OpenLib.Forms
         {
             try
             {
-                System.Threading.ThreadStart ts = new System.Threading.ThreadStart(RunWait);
-                System.Threading.Thread td = new System.Threading.Thread(ts);
-                td.Start();
+                if (this.Backup)
+                {
+                    System.Threading.ThreadStart ts = new System.Threading.ThreadStart(RunWait);
+                    System.Threading.Thread td = new System.Threading.Thread(ts);
+                    td.Start();
 
-                db_handler.Backup(Environment.CurrentDirectory + "\\autobackup.bak");
-                //System.Threading.Thread.Sleep(10000);
-                td.Abort();
+                    db_handler.Backup(Environment.CurrentDirectory + "\\autobackup.bak");
+                    //System.Threading.Thread.Sleep(10000);
+                    td.Abort();
+                }
             }
             catch
             { }

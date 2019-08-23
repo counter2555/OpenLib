@@ -901,6 +901,13 @@ namespace OpenLib
                         System.IO.File.Delete(Properties.Settings.Default.db_file);
                     }
 
+                    string lfile = Properties.Settings.Default.db_file.Replace(".mdf", "_log.ldf");
+
+                    if (System.IO.File.Exists(lfile))
+                    {
+                        System.IO.File.Delete(lfile);
+                    }
+
                     connection.Close();
                 }
             }
