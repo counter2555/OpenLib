@@ -19,5 +19,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=(localdb)\MSSQLLocalDB</Value>
     </Setting>
+    <Setting Name="MaxQuery" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

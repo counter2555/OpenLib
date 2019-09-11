@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="OpenLib.exe" version="1.0.1.0" publicKeyToken="dac1dfa64ffa7607" language="en" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="books.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="OpenLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="OpenLib.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC-Manifestoptionen
+          Wenn Sie die Ebene der Windows-Benutzerkontensteuerung ändern möchten, ersetzen Sie den
+          Knoten "requestedExecutionLevel" durch eine der folgenden Angaben.
+
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel level="highestAvailable" uiAccess="false" />
+
+         Wenn Sie Datei- und Registrierungsvirtualisierung für Abwärtskompatibilität
+         verwenden möchten, löschen Sie den Knoten "requestedExecutionLevel".
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="675752">
+      <assemblyIdentity name="Newtonsoft.Json" version="12.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>NZjMytW1Nf6m+TZiEHpBg7/WFnvx0PgCYENgk+3C468=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OpenLib.exe" size="3006400">
+      <assemblyIdentity name="OpenLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qtOhvY5KDGWcfOAtTGAJgxeKEQV6EZzcL/IYikfi3MU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="books.ico" size="782062">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>4WrKFkvsGC4vHlrcW8FJSZRKv5TDkzIALTHGxeYITJU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Icons\96px-Gnome-edit-find.svg.png" size="315724">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ulVVPpAkKhDfxaiW0OzjHDehthqgzXQVUIAWLPq5jE0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Icons\OpenLibDB.mdf" size="8388608" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OolpbNMY2DSnfaq3vNJ1BWN/pa6bGUrNOPRk6MeH2fQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Icons\OpenLibDB_log.ldf" size="8388608" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>7FmG1ulhTFsY/6UtEli9Sts+O/dj0xgL6n4QloneDTY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="OpenLib.exe.config" size="2101">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>cm7Yry/de2SrGPS22hlXOJN38wdAbVfpxB7M9r+UJw4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="OpenLibDB.mdf" size="8388608" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yBGGFzwjBc9UH9r3xiypx5GY1JY7+jo2cO1lsSVrb9k=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="OpenLibDB_log.ldf" size="8388608" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>I2wyDWy6dQGA3Ne4UU/zI9EFEAfi+ChJlO7IaiGYu0A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Other\Icons.txt" size="57">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zgdOV0X8f1KrKVKi0ESCfFRgwK1v0A0iDh4jlKYEo8I=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=NB-BEN\Benedikt" issuerKeyHash="9303326bc8232c5730fb4bb908b463559be2ee06" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>2o1VqZneu9VGacUq4QAfJYfs9B3xgGpv8nLXysFcnVc=</DigestValue></Reference></SignedInfo><SignatureValue>0jN8/eFYLo2Qu8ohibpHwyqtqUytMNpHkugshsbFqN+3jeqz/Olrzul0jUXWihV0rkhr/zx9UxSBIDeXGhjvJMb0ALZITR1g+gL4cNo5jJQlHm27GB1scdDrH6sq9gnHXfmdcISMObyMuiBbzbre9wKrM/V3qe2JE2w1MjZwbVw=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>2pYBhJ3yuGMAqHOGeQVeqGj+4xE2Y0M9ctgENw13ajYllI84FVTPI3+rG2grLjtxFRjE9Eu/W/yh4V59egDRJ3FY4yotbSMu0anUPw0Zz8NKPRtG/GK/mBqNDGDqRn7M46L9PwUiGQYCTxQeaDdafqW7Gj5b201CVb4vJZTbygE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="579d5cc1cad772f26f6a80f11df4ec87251f00e12ac56946d5bbde99a9558dda" Description="" Url=""><as:assemblyIdentity name="OpenLib.exe" version="1.0.1.0" publicKeyToken="dac1dfa64ffa7607" language="en" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=NB-BEN\Benedikt</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>3b9SWhq7HilSwC4qK+TB3LJBz9G17ExtliT5qI1Ycj0=</DigestValue></Reference></SignedInfo><SignatureValue>SbHtIQuuGwjy/u6M/DO2RGHT/H3XgFB80aWXfagkudQQBDKCjOX8c9p4qouzSWXnhek03rgNiOLHDwLcFWGrp0a3W1DhOC/SIictjMK/+vn60ounYYnyipH/jFfBlQ5LHAb28lfZSRHl80+aPJGYnVjwzZex016flGpFyOXo+Ik=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>2pYBhJ3yuGMAqHOGeQVeqGj+4xE2Y0M9ctgENw13ajYllI84FVTPI3+rG2grLjtxFRjE9Eu/W/yh4V59egDRJ3FY4yotbSMu0anUPw0Zz8NKPRtG/GK/mBqNDGDqRn7M46L9PwUiGQYCTxQeaDdafqW7Gj5b201CVb4vJZTbygE=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQJqyOhTXNorFA8cM/Q9fZajANBgkqhkiG9w0BAQsFADApMScwJQYDVQQDHh4ATgBCAC0AQgBFAE4AXABCAGUAbgBlAGQAaQBrAHQwHhcNMTkwOTExMTcyMzE2WhcNMjAwOTEwMjMyMzE2WjApMScwJQYDVQQDHh4ATgBCAC0AQgBFAE4AXABCAGUAbgBlAGQAaQBrAHQwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBANqWAYSd8rhjAKhzhnkFXqho/uMRNmNDPXLYBDcNd2o2JZSPOBVUzyN/qxtoKy47cRUYxPRLv1v8oeFefXoA0SdxWOMqLW0jLtGp1D8NGc/DSj0bRvxiv5gajQxg6kZ+zOOi/T8FIhkGAk8UHmg3Wn6luxo+W9tNQlW+LyWU28oBAgMBAAEwDQYJKoZIhvcNAQELBQADgYEAXJoKUUO0P1BDly06Sm7fDqAYd16lZg9ELjTRvWNIQOEzC2oM0FqIux3FfZgLWA4j6IXANfLNLuUNVj++F3wcItsWMd4LyBjZMQ6j7Hn6w3T+Rk9zQhTI06SgTKxZUajA6yCe6a6IjriuDAS+hb3Ex8ZrDBr5skPxoP6I9CtKaIw=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

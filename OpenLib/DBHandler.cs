@@ -23,6 +23,8 @@ namespace OpenLib
         private string connString;
         private SqlConnection conn;
 
+        private int MaxQuery = 1000;
+
         public struct SQLParameter
         {
             public string name;
@@ -33,8 +35,15 @@ namespace OpenLib
         {
             this.connString = conn_string;
 
+            this.ResetMaxQuery();
+
             this.conn = new SqlConnection(this.connString);
             this.conn.Open();
+        }
+
+        public void ResetMaxQuery()
+        {
+            this.MaxQuery = Properties.Settings.Default.MaxQuery;
         }
 
         public void End()
@@ -212,13 +221,13 @@ namespace OpenLib
 
         public List<User> GetAllUsers()
         {
-            string query = "SELECT * FROM dbo.Users ORDER BY LastName";
+            string query = "SELECT TOP "+this.MaxQuery.ToString()+" * FROM dbo.Users ORDER BY LastName";
             return this.UserQuery(query, new SQLParameter[] { });
         }
 
         public List<Admin> GetAllAdmins()
         {
-            string query = "SELECT * from dbo.Administrators ORDER BY Id";
+            string query = "SELECT TOP " + this.MaxQuery.ToString() + " * from dbo.Administrators ORDER BY Id";
             return this.AdminQuery(query, new SQLParameter[] { });
         }
 
@@ -439,7 +448,7 @@ namespace OpenLib
 
         public List<Book> GetAllBooks()
         {
-            string query = "SELECT *, "
+            string query = "SELECT TOP " + this.MaxQuery.ToString() + " *, "
                 + "(SELECT SUM(dbo.Leases.Quantity) FROM dbo.Leases "
                 + "WHERE dbo.Leases.BookId = dbo.Books.Id  AND dbo.Leases.Returned = 0) as Leased "
                 + "FROM dbo.Books ORDER BY Leased DESC, Title";
@@ -456,7 +465,7 @@ namespace OpenLib
 
         public List<Book> GetAllBooksAndRemain()
         {
-            string query = "SELECT * FROM dbo.Books ORDER BY Title";
+            string query = "SELECT TOP " + this.MaxQuery.ToString() + " * FROM dbo.Books ORDER BY Title";
             return this.BookQuery(query, new SQLParameter[] { });
 
         }
@@ -628,7 +637,7 @@ namespace OpenLib
         {
             string query = "SELECT "
 
-                            + "DISTINCT(dbo.Leases.Id), dbo.Leases.BookId, dbo.Leases.Quantity, "
+                            + "DISTINCT TOP "+this.MaxQuery.ToString()+" dbo.Leases.Id, dbo.Leases.BookId, dbo.Leases.Quantity, "
                             + "dbo.Leases.UserId, dbo.Leases.LeaseDate, dbo.Leases.ReturnDate, "
                             + "dbo.Leases.Returned, dbo.Leases.Remarks, "
 
@@ -644,7 +653,7 @@ namespace OpenLib
 
         public List<Lease> GetAllActiveLeases()
         {
-            string query = "SELECT "
+            string query = "SELECT TOP " + this.MaxQuery.ToString() + ""
 
                             + "DISTINCT(dbo.Leases.Id), dbo.Leases.BookId, dbo.Leases.Quantity, "
                             + "dbo.Leases.UserId, dbo.Leases.LeaseDate, dbo.Leases.ReturnDate, "

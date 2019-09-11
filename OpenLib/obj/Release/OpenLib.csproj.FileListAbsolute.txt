@@ -35,3 +35,9 @@ C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Release\Icons\OpenLibDB.m
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Release\Icons\OpenLibDB_log.ldf
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.Forms.Setup.resources
 C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.Forms.Wait.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Release\OpenLib.exe.manifest
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\bin\Release\OpenLib.application
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.Forms.AboutBox.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.Forms.Settings.resources
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.exe.manifest
+C:\Users\Benedikt\Documents\GitHub\OpenLib\OpenLib\obj\Release\OpenLib.application

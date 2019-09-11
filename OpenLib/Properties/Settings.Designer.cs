@@ -65,5 +65,17 @@ namespace OpenLib.Properties {
                 return ((string)(this["OpenLibDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int MaxQuery {
+            get {
+                return ((int)(this["MaxQuery"]));
+            }
+            set {
+                this["MaxQuery"] = value;
+            }
+        }
     }
 }

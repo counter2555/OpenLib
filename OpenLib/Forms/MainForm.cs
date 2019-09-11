@@ -993,5 +993,22 @@ namespace OpenLib.Forms
                     break;
             }
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox bx = new AboutBox();
+            bx.ShowDialog();
+        }
+
+        private void PreferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings dlg = new Settings();
+            if(dlg.ShowDialog() == DialogResult.OK)
+            {
+                Properties.Settings.Default.MaxQuery = (int)dlg.maxQ.Value;
+                Properties.Settings.Default.Save();
+                this.db_handler.ResetMaxQuery();
+            }
+        }
     }
 }
